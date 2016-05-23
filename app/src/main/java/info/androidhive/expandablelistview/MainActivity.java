@@ -39,10 +39,10 @@ public class MainActivity extends Activity {
 	private ArrayList<ModelOrder> listOrder;
 
 	// url to get category
-	private static String url_list_category = "http://supersheek.com/app_sheek/api/get_category.php";
+	private static String url_list_category = "YOU JSON Get Category";
 
 	// url to get order
-	private static String url_list_order = "http://supersheek.com/app_sheek/api/get_order_all.php";
+	private static String url_list_order = "YOU JSON GET All Order";
 
 	// Tag for category
 	private static String TAG_CATEGORY = "category";
@@ -83,12 +83,6 @@ public class MainActivity extends Activity {
 		listOrder = new ArrayList<>();
 		listDataHeader = new ArrayList<String>();
 		listDataChild = new HashMap<String, List<String>>();
-		child = new ArrayList<>();
-
-		arrChild = new ArrayList<String>();
-		arrChild2 = new ArrayList<String>();
-		arrChild3 = new ArrayList<String>();
-		arrChild4 = new ArrayList<String>();
 
 		childOrderName = new ArrayList<String>();
 		childOrderCategory = new ArrayList<String>();
@@ -198,31 +192,6 @@ public class MainActivity extends Activity {
 		protected void onPostExecute(Void aVoid) {
 			super.onPostExecute(aVoid);
 			dialog.dismiss();
-
-			// for (int i = 0; i < listCategory.size(); i++) {
-
-			// 	int cateID = listCategory.get(i).getCategoryID();
-
-			//	Log.i("Check cateID", "cateID = " + cateID);
-
-				// listDataChild.put(listDataHeader.get(i), childOrderName);
-				// listDataChild.put(listDataHeader.get(i), childOrderCategory);
-				//if (cateID == childID) {
-
-				//}
-
-				/**
-				if(cateID==1) {
-					listDataChild.put(listDataHeader.get(i), arrChild);
-				} else if(cateID==2) {
-					listDataChild.put(listDataHeader.get(i), arrChild2);
-				} else if(cateID==3) {
-					listDataChild.put(listDataHeader.get(i), arrChild3);
-				} else if(cateID==4) {
-					listDataChild.put(listDataHeader.get(i), arrChild4);
-				}
-				**/
-			//}
 
 			/**
 			 * Checking if List size if more than zero then
@@ -340,55 +309,29 @@ public class MainActivity extends Activity {
 			super.onPostExecute(aVoid);
 			dialog2.dismiss();
 
+			/** String for set variable array for category **/
 			String[] orderName = new String[listCategory.size()];
-
+			
+			/** Loop for set category **/
 			for (int j = 0; j < listCategory.size(); j++) {
 				List<String> orderNameList = new ArrayList<String>();
 				int cateIDCategory = listCategory.get(j).getCategoryID();
-				Log.i("Check cateIDCategory", "cateIDCategory = " + cateIDCategory);
 
 				// listDataChild.clear();
-
+				/** Loop for set child **/
 				for(int i = 0; i < listOrder.size(); i++) {
 					String cate = listOrder.get(i).getOrderCategory();
 					int cateIDOrder = Integer.parseInt(cate);
-					Log.i("Check i", "i = " + i);
-					Log.i("Check cateIDCategory", "cateIDCategoryInOrder = " + cateIDCategory);
-					Log.i("Check cateIDOrder", "cateIDOrder = " + cateIDOrder);
 					if (cateIDOrder==cateIDCategory) {
 						String strOrderName = listOrder.get(i).getOrderName();
-						Log.i("Check Ordername", "Ordername = " + strOrderName);
 						orderName[j] = strOrderName;
 						orderNameList.add(orderName[j]);
-						Log.i("Check orderName", "orderName + "+"["+ j +"] = "+strOrderName);
-						Log.i("Check ---------", "----------------------");
 					}
 				}
-				Log.i("Check orderNameList", "orderNameList" + orderNameList);
 				listDataChild.put(listDataHeader.get(j), orderNameList);
-				Log.i("Check listDataChild", "listDataChild" + listDataChild);
 			}
 
 			initWidget();
-
-				/**
-				if(cate.equals(String.valueOf("1"))){
-					arrChild.add(listOrder.get(i).getOrderName());
-					arrChild.add(listOrder.get(i).getOrderCategory());
-				} else if(cate.equals(String.valueOf("2"))){
-					arrChild2.add(listOrder.get(i).getOrderName());
-					arrChild2.add(listOrder.get(i).getOrderCategory());
-				} else if(cate.equals(String.valueOf("3"))){
-					arrChild3.add(listOrder.get(i).getOrderName());
-					arrChild3.add(listOrder.get(i).getOrderCategory());
-				} else if(cate.equals(String.valueOf("4"))){
-					arrChild4.add(listOrder.get(i).getOrderName());
-					arrChild4.add(listOrder.get(i).getOrderCategory());
-				}
-				**/
-			// }
-
-			//Log.i("Check Child", "child = " + child);
 
 			/**
 			 * Checking if List size if more than zero then
@@ -459,54 +402,5 @@ public class MainActivity extends Activity {
 				return false;
 			}
 		});
-	}
-
-	/**
-	 * Preparing the list data
-	 **/
-
-	private void prepareListData() {
-		// listDataHeader = new ArrayList<String>();
-		// listDataChild = new HashMap<String, List<String>>();
-
-		// Log.i("Check size", "Size = " + listCategory.size());
-
-		// Adding child data
-		// listDataHeader.add("Top 250");
-		// listDataHeader.add("Now Showing");
-		// listDataHeader.add("Coming Soon..");
-		// List<String> top250 = new ArrayList<>();
-		// Adding child data
-		List<String> top250 = new ArrayList<String>();
-		top250.add("The Shawshank Redemption");
-		top250.add("The Godfather");
-		top250.add("The Godfather: Part II");
-		top250.add("Pulp Fiction");
-		top250.add("The Good, the Bad and the Ugly");
-		top250.add("The Dark Knight");
-		top250.add("12 Angry Men");
-
-		List<String> top2502 = new ArrayList<String>();
-		top2502.add("The Conjuring");
-		top2502.add("Despicable Me 2");
-		top2502.add("Turbo");
-		top2502.add("Grown Ups 2");
-		top2502.add("Red 2");
-		top2502.add("The Wolverine");
-
-		List<String> comingSoon = new ArrayList<String>();
-		comingSoon.add("2 Guns");
-		comingSoon.add("The Smurfs 2");
-		comingSoon.add("The Spectacular Now");
-		comingSoon.add("The Canyons");
-		comingSoon.add("Europa Report");
-
-		Log.i("Check top250","Top250 =" + top250);
-
-		// listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-		// listDataChild.put(listDataHeader.get(1), nowShowing);
-		// listDataChild.put(listDataHeader.get(2), comingSoon);
-		// listDataChild.put(listDataHeader.get(3), comingSoon);
-		// listDataChild.put(listDataHeader.get(3), comingSoon);
 	}
 }
