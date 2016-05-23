@@ -60,12 +60,6 @@ public class MainActivity extends Activity {
 	List<String> child;
 	String[] strChild;
 
-	List<String> arrChild;
-	// ArrayList<String> arrChild;
-	List<String> arrChild2;
-	List<String> arrChild3;
-	List<String> arrChild4;
-
 	List<String> childOrderName;
 	List<String> childOrderCategory;
 
